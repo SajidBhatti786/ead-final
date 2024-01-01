@@ -1,12 +1,12 @@
 import "./App.css";
-import MyComponent from "./components/Test";
 import { useAuth } from "./context/global";
-import Dashbaord from "./components/Dashbaord";
-import About from "./components/About";
 import NotFound from "./components/NotFound";
+import Home from "./pages/Home";
+import ProductDetails from "./components/ProductDetails";
+
 import { Routes, Route } from "react-router";
 import { NavLink } from "react-router-dom";
-
+import { Navbar } from "react-bootstrap";
 function App() {
   const {
     isLoggedIn,
@@ -20,14 +20,10 @@ function App() {
   } = useAuth();
   return (
     <div className="App">
-      <MyComponent />
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/dashboard">Dashboard</NavLink>
-      <NavLink to="/about">About</NavLink>
+      <Navbar />
       <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashbaord />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </div>
   );
